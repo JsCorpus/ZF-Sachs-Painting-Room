@@ -1,0 +1,18 @@
+{
+  "targets": {
+    "am-i-protected": {
+      "hosting": {
+        "notus-angular": [
+          "am-i-protected"
+        ]
+      }
+    },
+    "zf-sachs-painting-room": {
+      "hosting": {
+        "notus-angular": [
+          "zf-sachs-painting-room"
+        ]
+      }
+    }
+  }
+}
