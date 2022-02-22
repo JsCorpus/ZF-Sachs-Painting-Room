@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">opp</string>
+    <!--activity Bienvenida-->
+    <string name="texActiviyBien">Bienvenido</string>
+    <string name="actyBiendenida">Usted está utilizando el sistema de emergencia. Para acceder a las funciones de temperatura y humedad, por favor, conecte este dispositivo al sistema de esta recamara.</string>
+    <string name="btnEmparejar">Emparejar dispositivo</string>
+    <!--activity emparejamiento-->
+    <string name="listtemparejar">Emparejamiento</string>
+    <!--activity de paiting room-->
+    <string name="paitingroom">Painting Room</string>
+    <string name="temperatura">Temperatura de la recámara</string>
+    <string name="humedad">Humedad de la recámara</string>
+    <string name="TemperaturaGrados"></string>
+    <string name="HumedadGrados"></string>
+    <string name="btnPsonora">Realizar prueba sonora</string>
+    <string name="btnPvisual">Realizar prueba visual</string>
+    <!--activity de pruebas sonoras-->
+    <string name="testsonora">Prueba sonora</string>
+    <string name="datossonora">La prueba sonora consiste en activar las alarmas que emiten sonido cuando la temperatura o humedad son elevadas para la mayoría de los procesos de pintado.</string>
+    <string name="btnsonora">Comenzar prueba sonora</string>
+    <string name="recomendacionsonora">Contacta a tu superior si la alarma no emite sonido</string>
+    <!--activity de pruebas visuales-->
+    <string name="testVisual">Prueba visual</string>
+    <string name="datosvisual">La prueba visual consiste en encender las alarmas visuales (destellos de luces) cuando la temperatura o humedad son elevadas para la mayoría de los procesos de pintado</string>
+    <string name="btnvisual">Comenzar la prueba visual</string>
+    <string name="recomendacionvisual">Contacta a tu superior si la alerta visual no funciona</string>
+
+
+</resources>
