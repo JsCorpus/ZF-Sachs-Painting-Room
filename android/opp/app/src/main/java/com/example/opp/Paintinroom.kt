@@ -13,6 +13,7 @@ class Paintinroom : AppCompatActivity() {
     var inithilo = false
     var hilo = false
     var mensaje= ""
+    var contador = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +29,19 @@ class Paintinroom : AppCompatActivity() {
                 Thread.sleep(500)
             }
 
-            while (hilo){
+            while (!hilo){
+                //Encender led
                 blue.mTx("t")
+
                 Thread.sleep(1000)
                 mensaje=blue.mRx()
-                if (mensaje!=""){
-                   runOnUiThread({pantallaTemperatura.text=mensaje }
-                   )
-                }else{
-                    break
+                contador = mensaje.length.toString();
+                blue.mTx(contador)
+                if (contador == "9" ){
+                    runOnUiThread({pantallaTemperatura.text=mensaje})
+                }else if(contador == "8" ){
+                    runOnUiThread({pantallaHumedad.text=mensaje})
+                }else {
                 }
                 blue.mensajeReset()
 
