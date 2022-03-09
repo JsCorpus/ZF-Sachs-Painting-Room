@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import ingenieria.jhr.bluetoothjhr.BluetoothJhr
 import kotlinx.android.synthetic.main.activity_paintinroom.*
 import kotlin.concurrent.thread
@@ -18,40 +19,44 @@ class Paintinroom : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paintinroom)
-        //
-        blue = BluetoothJhr(this, MainActivity::class.java)
+      datosBluetooth()
+    }
 
-        //seccion del temometro
+  fun datosBluetooth(){
+    //
+    blue=BluetoothJhr(this,Emparejar::class.java)
+    //seccion del termometro
+    thread(start = true){
+      while (!inithilo){
+        Thread.sleep(500)
+      }
 
+      while (!hilo){
+        //Encender led
+        blue.mTx("t")
 
-        thread(start = true){
-            while (!inithilo){
-                Thread.sleep(500)
-            }
+        Thread.sleep(1000)
+        mensaje=blue.mRx()
+        contador = mensaje.length.toString();
+        blue.mTx(contador)
+        if (contador == "9" ){
+          runOnUiThread({pantallaTemperatura.text=mensaje})
+        }else if(contador == "8" ){
+          runOnUiThread({pantallaHumedad.text=mensaje})
+        }else {
 
-            while (!hilo){
-                //Encender led
-                blue.mTx("t")
-
-                Thread.sleep(1000)
-                mensaje=blue.mRx()
-                contador = mensaje.length.toString();
-                blue.mTx(contador)
-                if (contador == "9" ){
-                    runOnUiThread({pantallaTemperatura.text=mensaje})
-                }else if(contador == "8" ){
-                    runOnUiThread({pantallaHumedad.text=mensaje})
-                }else {
-                }
-                blue.mensajeReset()
-
-            }
-            Thread.sleep(1000)
         }
+        blue.mensajeReset()
 
-
+      }
+      Thread.sleep(1000)
 
     }
+
+
+
+
+  }
     override fun onResume() {
         super.onResume()
         inithilo =  blue.conectaBluetooth()
@@ -69,15 +74,17 @@ class Paintinroom : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         inithilo=true
-        hilo=false
+        hilo=true
     }
 
     fun Pruebasonora(vista: View){
-        val intent= Intent(this,PruebaSonora::class.java)
-        startActivity(intent)
+      blue.mTx("1")
+      Thread.sleep(1000)
+      Toast.makeText(this, "Realizando prueba sonora", Toast.LENGTH_SHORT).show()
     }
     fun pruebavisual(vista:View){
-        val intent= Intent(this,PruebaVisual::class.java)
-        startActivity(intent)
+      blue.mTx("3")
+      Thread.sleep(1000)
+      Toast.makeText(this, "Realizando prueba visual", Toast.LENGTH_SHORT).show()
     }
 }

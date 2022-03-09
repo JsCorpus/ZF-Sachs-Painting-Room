@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
             override fun onFinish() {
                 val intent= Intent(this@MainActivity,Bienvenido::class.java).apply{}
                 startActivity(intent)
+              //destruye la activity
+              finish()
             }
 
         }.start()

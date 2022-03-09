@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">opp</string>
+    <string name="app_name">ZF Sachs</string>
     <!--activity Bienvenida-->
     <string name="texActiviyBien">Bienvenido</string>
     <string name="actyBiendenida">Usted está utilizando el sistema de emergencia. Para acceder a las funciones de temperatura y humedad, por favor, conecte este dispositivo al sistema de esta recamara.</string>
