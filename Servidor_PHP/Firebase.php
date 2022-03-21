@@ -9,7 +9,7 @@ $timer = $_GET ['timer'];
 
 
 //$data = '{"Temperatura":"27","Humedad":"15"}';
-$data = '{"Temperatura":"'.$temperatura.'","Humedad":"'.$humedad.'","tempid":"'.$temid.'","humid":"'.$humid.'","tim":"'.$tim.'","timer":"'.$timer.'"}';
+$data = '{"Temperatura":"'.$temperatura.'","Humedad":"'.$humedad.'","tempid":"'.$tempid.'","humid":"'.$humid.'","tim":"'.$tim.'","timer":"'.$timer.'"}';
 $url = "https://zf-sachs-painting-room-default-rtdb.firebaseio.com/data.json";
 
 $ch = curl_init();

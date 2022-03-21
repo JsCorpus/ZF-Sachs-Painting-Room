@@ -115,23 +115,23 @@ void loop() {
 //Selector de mensaje de información (Temperatura ideal - Alta tolerable - Temperatura alta
 
   if( t >= 24 && t <= 32){
-    tempid = "Alta tolerable";
+    tempid = "Alta_tolerable";
   } else if 
   ( t >= 33 ){
-    tempid = "Temperatura alta";
+    tempid = "Temperatura_alta";
   } else {
-    tempid = "Temperatura ideal";
+    tempid = "Temperatura_ideal";
   }
 
   //Selector de mensaje de información (humedad ideal - Alta tolerable - Temperatura alta
 
   if( h >= 27 && h <= 29){
-    humid = "Alta tolerable";
+    humid = "Alta_tolerable";
   } else if 
   ( h >= 30 ){
-    humid = "Temperatura alta";
+    humid = "Humedad_alta";
   } else {
-    humid = "Humedad ideal";
+    humid = "Humedad_ideal";
   }
 
     String url = "/Firebase.php?temperatura=";
@@ -146,7 +146,8 @@ void loop() {
     url += tim;
     url += "&timer=";
     url += timer;
-    
+
+    Serial.print(url);
     
     // Enviamos petición al servidor
     client.print(String("GET ") + url + " HTTP/1.1\r\n" +
