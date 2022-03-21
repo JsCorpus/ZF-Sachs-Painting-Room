@@ -2,9 +2,14 @@
 
 $humedad = $_GET ['humedad'];
 $temperatura = $_GET ['temperatura'];
+$tempid =  $_GET ['tempid']
+$humid = $_GET ['humid'];
+$tim = $_GET ['tim'];
+$timer = $_GET ['timer'];
+
 
 //$data = '{"Temperatura":"27","Humedad":"15"}';
-$data = '{"Temperatura":"'.$temperatura.'","Humedad":"'.$humedad.'"}';
+$data = '{"Temperatura":"'.$temperatura.'","Humedad":"'.$humedad.'","tempid":"'.$temid.'","humid":"'.$humid.'","tim":"'.$tim.'","timer":"'.$timer.'"}';
 $url = "https://zf-sachs-painting-room-default-rtdb.firebaseio.com/data.json";
 
 $ch = curl_init();
@@ -21,3 +26,4 @@ if( curl_errno($ch)){
     echo "Datos insertados";
 }
 ?>
+
