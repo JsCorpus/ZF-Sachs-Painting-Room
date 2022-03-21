@@ -26,17 +26,6 @@ const int Sound = 13; //Corresponde al pin D7
 //Declaramos el LED que indicará el fallo de conexión
 const int Warning = 15; //Corresponde al pin D8
 
-//Declaramos las variables de información
-const char tempid = "";
-const char humid = "";
-
-//Variable contador de tiempo offline
-const int tim;
-
-//Variable contador de tiempo en error
-const int timer;
-
-
 void setup(void)
 { 
   WiFi.begin(ssid, password);
@@ -66,6 +55,16 @@ void setup(void)
 
 }
 void loop() {
+    //Declaramos las variables de información
+    String tempid = "";
+    String humid = "";
+
+    //Variable contador de tiempo offline
+    int tim = 0;
+
+    //Variable contador de tiempo en error
+    int timer = 0;
+  
     float h = dht.readHumidity();
     float t = dht.readTemperature();         
     Serial.print("Humedad = ");
@@ -79,6 +78,7 @@ void loop() {
   if (isnan(h) || isnan(t)) {
     Serial.println("Error");
     timer++;
+    tim++;
     return;
   }
   
@@ -92,7 +92,6 @@ void loop() {
       Serial.println("Fallo al conectar");
       digitalWrite(Warning, HIGH);
       tim++;
-      timer++;
       return;
     } else {
       digitalWrite(Warning, LOW);
@@ -115,7 +114,7 @@ void loop() {
 
 //Selector de mensaje de información (Temperatura ideal - Alta tolerable - Temperatura alta
 
-  if( t >= 24 %% t <= 32){
+  if( t >= 24 && t <= 32){
     tempid = "Alta tolerable";
   } else if 
   ( t >= 33 ){
@@ -126,7 +125,7 @@ void loop() {
 
   //Selector de mensaje de información (humedad ideal - Alta tolerable - Temperatura alta
 
-  if( h >= 27 %% h <= 29){
+  if( h >= 27 && h <= 29){
     humid = "Alta tolerable";
   } else if 
   ( h >= 30 ){

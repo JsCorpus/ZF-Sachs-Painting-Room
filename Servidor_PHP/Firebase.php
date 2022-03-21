@@ -2,7 +2,7 @@
 
 $humedad = $_GET ['humedad'];
 $temperatura = $_GET ['temperatura'];
-$tempid =  $_GET ['tempid']
+$tempid =  $_GET ['tempid'];
 $humid = $_GET ['humid'];
 $tim = $_GET ['tim'];
 $timer = $_GET ['timer'];
