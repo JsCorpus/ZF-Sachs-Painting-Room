@@ -4,6 +4,15 @@
 
 export const environment = {
   production: false,
+  firebase: {
+    apiKey: 'AIzaSyD4YWBnzSx4oLk5-hMBTjYgiGf0XXsFunU',
+    authDomain: 'zf-sachs-painting-room.firebaseapp.com',
+    databaseURL: 'https://zf-sachs-painting-room-default-rtdb.firebaseio.com',
+    projectId: 'zf-sachs-painting-room',
+    storageBucket: 'zf-sachs-painting-room.appspot.com',
+    messagingSenderId: '485611175533',
+    appId: '1:485611175533:web:5029ee3c761880ac2fc964'
+  }
 };
 
 /*

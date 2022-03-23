@@ -1,29 +1,54 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import Chart from "chart.js";
 
+//Imports para Firebase
+import { Tutorial } from "src/app/models/tutorial.model";
+import { TutorialService } from "src/app/services/tutorial.service";
+import { map } from 'rxjs/operators'
+
 @Component({
   selector: "app-card-line-chart",
   templateUrl: "./card-line-chart.component.html",
 })
 export class CardLineChartComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit() {}
+  //Datos firebase
+  data?: any = Tutorial;
+
+  constructor(public tutorialService: TutorialService) {}
+
+  ngOnInit(): void {
+    this.retrieveTutorials();
+  }
+  retrieveTutorials(): void {
+    this.tutorialService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.data = data;
+      console.log(this.data);
+    });
+  }
+
+
   ngAfterViewInit() {
     var config = {
       type: "line",
       data: {
         labels: [
-          "11:30",
           "12:00",
-          "12:30",
           "13:00",
-          "13:30",
           "14:00",
+          "15:00",
+          "16:00",
+          "17:00",
         ],
         datasets: [
           {
-            label: "Temperatura",
+            label: "Temperatura porcentual",
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
             data: [27, 25, 30, 28, 28, 27, 24.5],
@@ -34,7 +59,7 @@ export class CardLineChartComponent implements OnInit {
             fill: false,
             backgroundColor: "#fff",
             borderColor: "#fff",
-            data: [60, 68, 86, 74, 56, 60, 87],
+            data: [29, 27, 40, 74, 96, 27, 37],
           },
         ],
       },

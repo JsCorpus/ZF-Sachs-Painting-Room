@@ -3,53 +3,53 @@
   <div class="px-4 md:px-10 mx-auto w-full">
     <div>
       <!-- Card stats -->
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap" *ngFor="let n of data">
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats
             statSubtitle="Temperatura"
-            statTitle="27°c"
-            statArrow="up"
-            statPercent="3.48"
-            statPercentColor="text-red-500"
-            statDescripiron="Temperatura ideal"
-            statIconName="far fa-chart-bar"
+            statTitle={{n.Temperatura}}
+            statArrow={{n.at}}
+            statPercent=""
+            statPercentColor={{n.E1}}
+            statDescripiron={{n.tempid}}
+            statIconName="fas fa-thermometer-three-quarters"
             statIconColor="bg-red-500"
           ></app-card-stats>
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats
             statSubtitle="Humedad"
-            statTitle="60.65%"
-            statArrow="up"
+            statTitle={{n.Humedad}}
+            statArrow={{n.bh}}
             statPercent="17"
-            statPercentColor="text-emerald-500"
-            statDescripiron="Humedad ideal"
+            statPercentColor={{n.E2}}
+            statDescripiron={{n.humid}}
             statIconName="fas fa-percent"
             statIconColor="bg-emerald-500"
           ></app-card-stats>
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats
-            statSubtitle="Errores"
-            statTitle="7"
-            statArrow="down"
-            statPercent="37"
+            statSubtitle="Tiempo Offline"
+            statTitle={{n.tim}}
+            statArrow="up"
+            statPercent="0"
             statPercentColor="text-emerald-500"
-            statDescripiron="Con respecto anterior"
+            statDescripiron="Durante el ciclo"
             statIconName="fas fa-chart-pie"
             statIconColor="bg-orange-500"
           ></app-card-stats>
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats
-            statSubtitle="Alarmas"
-            statTitle="2"
+            statSubtitle="Ciclos en error"
+            statTitle={{n.timer}}
             statArrow="up"
-            statPercent="50"
+            statPercent="0"
             statPercentColor="text-orange-500"
-            statDescripiron="Durante el ciclo"
-            statIconName="fas fa-users"
-            statIconColor="bg-pink-500"
+            statDescripiron="Ciclos de 5s"
+            statIconName="fas fa-history"
+            statIconColor="bg-orange-500"
           ></app-card-stats>
         </div>
       </div>

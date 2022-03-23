@@ -1,6 +1,6 @@
 #include <ESP8266WiFi.h>
-const char* ssid     = "Totalplay-DA7C";      // SSID
-const char* password = "DA7C67DAnraU27Sr";      // Password
+const char* ssid     = "Proyecto ZF Sachs";      // SSID
+const char* password = "Equipo_5";      // Password
 const char* host = "zf-painting-room.000webhostapp.com";  // IP o dirección del servidor intermedio
 const int   port = 80;            // Puerto del server
 const int   watchdog = 5000;        // Frecuencia de Whatchdog
@@ -60,10 +60,18 @@ void loop() {
     String humid = "";
 
     //Variable contador de tiempo offline
-    int tim = 0;
+    int tim;
 
     //Variable contador de tiempo en error
-    int timer = 0;
+    int timer;
+
+    //Variables de datos
+    String at = "";
+    String bh = "";
+
+    //Variables de estilos
+    String E1 = "";
+    String E2 = "";
   
     float h = dht.readHumidity();
     float t = dht.readTemperature();         
@@ -116,24 +124,37 @@ void loop() {
 
   if( t >= 24 && t <= 32){
     tempid = "Alta_tolerable";
+    at = "up";
+    E1 = "text-red-500";
   } else if 
   ( t >= 33 ){
     tempid = "Temperatura_alta";
+    at = "up";
+    E1 = "text-red-500";
   } else {
     tempid = "Temperatura_ideal";
+    at = "down";
+    E1 = "text-emerald-500";
   }
 
   //Selector de mensaje de información (humedad ideal - Alta tolerable - Temperatura alta
 
   if( h >= 27 && h <= 29){
     humid = "Alta_tolerable";
+    bh = "up";
+    E2 = "text-red-500";
   } else if 
   ( h >= 30 ){
     humid = "Humedad_alta";
+    bh = "up";
+    E2 = "text-red-500";
   } else {
     humid = "Humedad_ideal";
+    bh = "down";
+    E2 = "text-emerald-500";
   }
 
+ //String de la URL al cual se conecta el NODEMCU
     String url = "/Firebase.php?temperatura=";
     url += t;
     url += "&humedad=";
@@ -146,6 +167,14 @@ void loop() {
     url += tim;
     url += "&timer=";
     url += timer;
+    url += "&at=";
+    url += at;
+    url += "&bh=";
+    url += bh;
+    url += "&E1=";
+    url += E1;
+    url += "&E2=";
+    url += E2;
 
     Serial.print(url);
     

@@ -48,6 +48,13 @@ import { NotificationDropdownComponent } from "./components/dropdowns/notificati
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user-dropdown.component";
 
+//Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+//environment
+import { environment } from "src/environments/environment";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +92,12 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
     LandingComponent,
     ProfileComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+  BrowserModule, 
+  AppRoutingModule,
+  AngularFireDatabaseModule,
+  AngularFireModule.initializeApp(environment.firebase)
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

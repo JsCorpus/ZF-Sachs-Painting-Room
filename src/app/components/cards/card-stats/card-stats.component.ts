@@ -1,10 +1,13 @@
 import { Component, OnInit, Input } from "@angular/core";
 
+
 @Component({
   selector: "app-card-stats",
   templateUrl: "./card-stats.component.html",
 })
+
 export class CardStatsComponent implements OnInit {
+
   @Input()
   get statSubtitle(): string {
     return this._statSubtitle;
